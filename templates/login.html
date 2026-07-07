@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inventory & Warehouse Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<h1>Inventory & Warehouse<br>Management System</h1>
+
+<p>
+Manage Products • Warehouse • Stock • Reports
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<h2>Welcome Back 👋</h2>
+
+<p>Please login to continue</p>
+
+<form action="/dashboard" method="get">
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input type="text" placeholder="Enter Username">
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<i class="fa-solid fa-eye" id="eye"></i>
+
+</div>
+
+<div class="options">
+
+<label>
+
+<input type="checkbox">
+
+Remember Me
+
+</label>
+
+<a href="#">Forgot Password?</a>
+
+</div>
+
+<button type="submit"  class="btn-primary">
+
+Login
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

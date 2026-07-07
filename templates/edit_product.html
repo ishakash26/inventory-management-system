@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+</head>
+<body>
+
+<h2>Edit Product</h2>
+
+<form method="POST" action="/update_product/{{ product.product_id }}">
+
+    <input type="text" name="product_name" value="{{ product.product_name }}"><br><br>
+
+    <input type="text" name="category" value="{{ product.category }}"><br><br>
+
+    <input type="text" name="variant" value="{{ product.variant }}"><br><br>
+
+    <input type="number" name="quantity" value="{{ product.quantity }}"><br><br>
+
+    <input type="number" name="price" value="{{ product.price }}"><br><br>
+
+<input type="date" name="expiry_date" value="{{ product.expiry_date }}"><br><br>
+
+<input type="text" name="warehouse" value="{{ product.warehouse }}"><br><br>
+
+<input type="text" name="supplier" value="{{ product.supplier }}"><br><br>
+
+<select name="status">
+    <option {% if product.status=="In Stock" %}selected{% endif %}>In Stock</option>
+    <option {% if product.status=="Out of Stock" %}selected{% endif %}>Out of Stock</option>
+</select>
+
+<br><br>
+
+
+    <button type="submit">Update Product</button>
+
+</form>
+
+</body>
+</html>
