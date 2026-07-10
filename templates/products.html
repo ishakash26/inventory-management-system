@@ -30,25 +30,25 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="/categories">
                 <i class="fa-solid fa-layer-group"></i> Categories
             </a>
         </li>
 
         <li>
-            <a href="#">
+            <a href="/warehouse">
                 <i class="fa-solid fa-warehouse"></i> Warehouse
             </a>
         </li>
 
         <li>
-            <a href="#">
+            <a href="/suppliers">
                 <i class="fa-solid fa-truck"></i> Suppliers
             </a>
         </li>
 
         <li>
-            <a href="#">
+            <a href="/orders">
                 <i class="fa-solid fa-cart-shopping"></i> Orders
             </a>
         </li>
@@ -81,16 +81,27 @@
 
     </div>
 
-    <button class="btn-primary" onclick="openProductForm()">
+    <button class="btn-primary" add-btn onclick="openProductForm()">
         <i class="fa-solid fa-plus"></i>
         Add Product
     </button>
 
-    <form method="GET" action="/products">
-    <input type="text" name="search" placeholder="Search Product..."
-           style="padding:8px;width:250px;">
-    <button type="submit">Search</button>
+   <div class="search-bar">
+
+<form method="GET" action="/products">
+
+<input type="text"
+       name="search"
+       placeholder="🔍 Search Product...">
+
+<button type="submit">
+<i class="fa-solid fa-magnifying-glass"></i>
+Search
+</button>
+
 </form>
+
+</div>
 
 <br>
     <div id="productForm">
@@ -127,7 +138,7 @@
 
 </form>
 </div>
-
+<div class="table-box">
 <table class="product-table">
 
     <thead>
@@ -178,6 +189,7 @@
 </tbody>
 
 </table>
+</div>
 
 <script>
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Warehouse</title>
+
+<style>
+
+body{
+    background:#f4f7fc;
+    font-family:Arial,sans-serif;
+}
+
+.card{
+    width:450px;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    color:#0d6efd;
+}
+
+label{
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+.update{
+    background:#0d6efd;
+}
+
+.update:hover{
+    background:#0b5ed7;
+}
+
+.back{
+    background:#6c757d;
+}
+
+.back:hover{
+    background:#5a6268;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🏭 Edit Warehouse</h1>
+
+<form method="POST">
+
+<label>Warehouse Name</label>
+<input type="text" name="warehouse_name" value="{{ warehouse.warehouse_name }}" required>
+
+<label>Location</label>
+<input type="text" name="location" value="{{ warehouse.location }}" required>
+
+<label>Manager Name</label>
+<input type="text" name="manager_name" value="{{ warehouse.manager_name }}" required>
+
+<label>Capacity</label>
+<input type="number" name="capacity" value="{{ warehouse.capacity }}" required>
+
+<button class="update" type="submit">Update Warehouse</button>
+
+<a href="/warehouse">
+    <button class="back" type="button">Back</button>
+</a>
+
+</form>
+
+</div>
+
+</body>
+</html>

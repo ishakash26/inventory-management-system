@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Order</title>
+
+    <style>
+        body{
+            background:#f4f7fc;
+            font-family:Arial,sans-serif;
+        }
+
+        .card{
+            width:450px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            color:#0d6efd;
+        }
+
+        input,select{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:8px;
+        }
+
+        button{
+            background:#0d6efd;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0b5ed7;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>📦 Add Order</h1>
+
+<form method="POST">
+
+<label>Product Name</label>
+<input type="text" name="product_name" required>
+
+<label>Supplier Name</label>
+<input type="text" name="supplier_name" required>
+
+<label>Quantity</label>
+<input type="number" name="quantity" required>
+
+<label>Order Date</label>
+<input type="date" name="order_date" required>
+
+<label>Status</label>
+<select name="status">
+    <option>Pending</option>
+    <option>Processing</option>
+    <option>Delivered</option>
+</select>
+
+<button type="submit">Save Order</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

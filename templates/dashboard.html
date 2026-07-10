@@ -13,64 +13,293 @@
 
 <div class="dashboard">
 
+    <!-- Sidebar -->
     <div class="sidebar">
+
         <h2>IMS</h2>
 
         <ul>
-            <li><i class="fa-solid fa-house"></i> Dashboard</li>
+
+            <li class="active">
+                <a href="/dashboard">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
             <li>
-    <a href="/products">
-        <i class="fa-solid fa-box"></i> Products
-    </a>
-</li>
-            <li><i class="fa-solid fa-warehouse"></i> Warehouse</li>
-            <li><i class="fa-solid fa-cart-shopping"></i> Orders</li>
-            <li><i class="fa-solid fa-chart-line"></i> Reports</li>
-            <li><i class="fa-solid fa-gear"></i> Settings</li>
+                <a href="/products">
+                    <i class="fa-solid fa-box"></i>
+                    Products
+                </a>
+            </li>
+
+            <li>
+                <a href="/warehouse">
+                    <i class="fa-solid fa-warehouse"></i>
+                    Warehouse
+                </a>
+            </li>
+
+            <li>
+                <a href="/orders">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Orders
+                </a>
+            </li>
+
+            <li>
+                <a href="/categories">
+                    <i class="fa-solid fa-layer-group"></i>
+                    Categories
+                </a>
+            </li>
+
+            <li>
+                <a href="/suppliers">
+                    <i class="fa-solid fa-truck"></i>
+                    Suppliers
+                </a>
+            </li>
+
+            <li>
+                <a href="/reports">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="/settings">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+            </li>
+
         </ul>
+
     </div>
 
+    <!-- Main -->
     <div class="main">
 
-    <div class="topbar">
-        <h1>Inventory & Warehouse Management System</h1>
+        <div class="topbar">
 
-        <div class="profile">
-            <i class="fa-solid fa-user"></i>
-            <span>Admin</span>
+            <h1>Inventory & Warehouse Management System</h1>
+
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>{{ admin_name }}</span>
+            </div>
+
         </div>
+                <!-- Welcome Banner -->
+        <div class="welcome-banner">
+
+            <div class="banner-left">
+                <h2>Central Inventory Dashboard</h2>
+                <p>BHEL Haridwar | Inventory & Warehouse Management System</p>
+            </div>
+
+            <div class="banner-right">
+                <h3>{{ total_products }}</h3>
+                <p>Total Products</p>
+            </div>
+
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa-solid fa-box"></i>
+                <h3>Total Products</h3>
+                <h2>{{ total_products }}</h2>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>Categories</h3>
+                <h2>{{ total_categories }}</h2>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-warehouse"></i>
+                <h3>Warehouses</h3>
+                <h2>{{ total_warehouse }}</h2>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>Orders</h3>
+                <h2>{{ total_orders }}</h2>
+            </div>
+
+        </div>
+        <div class="chart-section">
+
+    <div class="chart-card">
+        <h3>Products by Category</h3>
+        <canvas id="pieChart"></canvas>
     </div>
 
-    <p>Dashboard Overview</p>
-
-<div class="cards">
-
-    <div class="card">
-        <i class="fa-solid fa-box"></i>
-        <h3>Total Products</h3>
-        <h2>{{ total_products }}</h2>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-warehouse"></i>
-        <h3>Out Of Stock</h3>
-        <h2>{{ out_stock }}</h2>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <h3>Orders</h3>
-        <h2> {{ in_stock }}</h2>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <h3>Low Stock</h3>
-        <h2>18</h2>
+    <div class="chart-card">
+        <h3>Orders Overview</h3>
+        <canvas id="barChart"></canvas>
     </div>
 
 </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = {{ category_chart | map(attribute='category') | list | tojson }};
+const values = {{ category_chart | map(attribute='total') | list | tojson }};
+
+const pieCanvas = document.getElementById("pieChart");
+
+if (pieCanvas) {
+    new Chart(pieCanvas, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: [
+                    "#4CAF50",
+                    "#2196F3",
+                    "#FF9800",
+                    "#9C27B0",
+                    "#F44336",
+                    "#00BCD4"
+                ]
+            }]
+        }
+    });
+}
+
+const barCanvas = document.getElementById("barChart");
+
+if (barCanvas) {
+    new Chart(barCanvas, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Products",
+                data: values,
+                backgroundColor: "#3b82f6"
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+</script>
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+
+            <div class="left-panel">
+
+                <div class="panel">
+                    <h3>Recent Products</h3>
+
+                    <table class="product-table">
+
+                        <tr>
+                            <th>Product</th>
+                            <th>Status</th>
+                        </tr>
+
+                        {% for product in recent_products %}
+                        <tr>
+                            <td>{{ product.product_name }}</td>
+                            <td>{{ product.status }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+                            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+
+                <div class="panel">
+
+                    <h3>Low Stock Products</h3>
+
+                    <table class="product-table">
+
+                        <tr>
+                            <th>Product</th>
+                            <th>Qty</th>
+                        </tr>
+
+                        {% for item in low_stock %}
+                        <tr>
+                            <td>{{ item.product_name }}</td>
+                            <td style="color:red;font-weight:bold;">
+                                {{ item.quantity }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>Quick Actions</h3>
+
+                    <div class="quick-actions">
+
+                        <a href="/products">
+                            <button class="btn-primary">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Product
+                            </button>
+                        </a>
+
+                        <a href="/orders">
+                            <button class="btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Orders
+                            </button>
+                        </a>
+
+                        <a href="/warehouse">
+                            <button class="btn-primary">
+                                <i class="fa-solid fa-warehouse"></i>
+                                Warehouse
+                            </button>
+                        </a>
+
+                        <a href="/reports">
+                            <button class="btn-primary">
+                                <i class="fa-solid fa-chart-line"></i>
+                                Reports
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

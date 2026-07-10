@@ -36,21 +36,24 @@ Manage Products • Warehouse • Stock • Reports
 
 <p>Please login to continue</p>
 
-<form action="/dashboard" method="get">
+<form action="/" method="post">
 
 <div class="input-box">
 
 <i class="fa-solid fa-user"></i>
 
-<input type="text" placeholder="Enter Username">
-
+<input type="text" name="username" placeholder="Enter Username" required>
 </div>
 
 <div class="input-box">
 
 <i class="fa-solid fa-lock"></i>
 
-<input type="password" id="password" placeholder="Enter Password">
+<input type="password"
+       name="password"
+       id="password"
+       placeholder="Enter Password"
+       required>
 
 <i class="fa-solid fa-eye" id="eye"></i>
 

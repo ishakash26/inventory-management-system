@@ -2,29 +2,90 @@
 <html>
 <head>
     <title>Edit Product</title>
+    <style>
+body{
+    background:#f4f7fc;
+    font-family:Arial,sans-serif;
+}
+
+.card{
+    width:700px;
+    margin:20px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:20px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0b5ed7;
+    transition:0.3s;
+font-weight:bold;
+letter-spacing:0.5px;
+}
+label{
+    font-weight: bold;
+    color: #333;
+}
+</style>
 </head>
 <body>
 
-<h2>Edit Product</h2>
+<div class="card">
+
+<h2>📝 Edit Product</h2>
+<label>Product Name</label>
+<input type="text" name="product_name" value="{{ product.product_name }}">
 
 <form method="POST" action="/update_product/{{ product.product_id }}">
+    <label>Category</label>
+<input type="text" name="category" value="{{ product.category }}">
 
-    <input type="text" name="product_name" value="{{ product.product_name }}"><br><br>
+<label>Variant</label>
+<input type="text" name="variant" value="{{ product.variant }}">
 
-    <input type="text" name="category" value="{{ product.category }}"><br><br>
+<label>Quantity</label>
+<input type="number" name="quantity" value="{{ product.quantity }}">
 
-    <input type="text" name="variant" value="{{ product.variant }}"><br><br>
+<label>Price</label>
+<input type="number" name="price" value="{{ product.price }}">
 
-    <input type="number" name="quantity" value="{{ product.quantity }}"><br><br>
+<label>Expiry Date</label>
+<input type="date" name="expiry_date" value="{{ product.expiry_date }}">
 
-    <input type="number" name="price" value="{{ product.price }}"><br><br>
+<label>Warehouse</label>
+<input type="text" name="warehouse" value="{{ product.warehouse }}">
 
-<input type="date" name="expiry_date" value="{{ product.expiry_date }}"><br><br>
-
-<input type="text" name="warehouse" value="{{ product.warehouse }}"><br><br>
-
-<input type="text" name="supplier" value="{{ product.supplier }}"><br><br>
-
+<label>Supplier</label>
+<input type="text" name="supplier" value="{{ product.supplier }}">
 <select name="status">
     <option {% if product.status=="In Stock" %}selected{% endif %}>In Stock</option>
     <option {% if product.status=="Out of Stock" %}selected{% endif %}>Out of Stock</option>
@@ -36,6 +97,7 @@
     <button type="submit">Update Product</button>
 
 </form>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Orders</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f7fc;
+}
+
+.container{
+    width:90%;
+    margin:30px auto;
+}
+
+h1{
+    color:#0d6efd;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#0d6efd;
+    color:white;
+}
+
+button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#0d6efd;
+    color:white;
+    cursor:pointer;
+    margin:5px;
+}
+
+button:hover{
+    background:#0b5ed7;
+}
+
+.delete{
+    background:#dc3545;
+}
+
+.delete:hover{
+    background:#bb2d3b;
+}
+
+a{
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📦 Orders</h1>
+
+<a href="/add-order">
+    <button>+ Add Order</button>
+</a>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Product</th>
+    <th>Supplier</th>
+    <th>Quantity</th>
+    <th>Order Date</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for o in orders %}
+
+<tr>
+
+<td>{{ o.id }}</td>
+<td>{{ o.product_name }}</td>
+<td>{{ o.supplier_name }}</td>
+<td>{{ o.quantity }}</td>
+<td>{{ o.order_date }}</td>
+<td>{{ o.status }}</td>
+
+<td>
+
+<a href="/edit-order/{{ o.id }}">
+<button>Edit</button>
+</a>
+
+<a href="/delete-order/{{ o.id }}">
+<button class="delete">Delete</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
